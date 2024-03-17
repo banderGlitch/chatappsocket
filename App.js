@@ -5,7 +5,8 @@ import Socket from './src/Screens/Socket';
 import socketServices from './src/utils/socketService';
 import { getManufacturer } from 'react-native-device-info';
 import Routes from './src/Navigations/Routes';
-
+import { Provider } from 'react-redux'
+import store from './src/redux/store';
 
 function App() {
   // const [Origin , setOrigin] = useState();
@@ -24,7 +25,7 @@ function App() {
   //       // Handle error as needed
   //     }
   //   };
-  
+
   //   Manufacturer();
   // }, []);
 
@@ -40,7 +41,7 @@ function App() {
   //     return;
   //   }
   //   Alert.alert("message  empty")
-   
+
 
   // }
 
@@ -52,11 +53,12 @@ function App() {
   //   })
   // }, [data])
 
-  
+
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Routes/>
-      {/* <View style={styles.container}>
+    <Provider store={store}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <Routes />
+        {/* <View style={styles.container}>
         <View style={{ ...styles.inputcontainer, padding: 15 }}>
           <View style={{ flex: 0.9 }} >
             <TextInput
@@ -79,7 +81,8 @@ function App() {
           })}
       </View>
       <Socket /> */}
-    </SafeAreaView>
+      </SafeAreaView>
+    </Provider>
   );
 }
 

@@ -12,16 +12,26 @@
     "debug-android-device2": "react-native start --port 8091 && react-native run-android --port 8092 --deviceId FE6H7TDIBENR4PL7 "
   },
   "dependencies": {
+    "@react-native-clipboard/clipboard": "^1.13.2",
     "@react-navigation/bottom-tabs": "^6.5.19",
     "@react-navigation/native": "^6.1.16",
     "@react-navigation/native-stack": "^6.9.25",
+    "@reduxjs/toolkit": "^2.2.1",
+    "axios": "^1.6.8",
+    "install": "^0.13.0",
     "react": "18.2.0",
     "react-native": "0.73.6",
     "react-native-device-info": "^10.13.1",
+    "react-native-image-crop-picker": "^0.40.3",
     "react-native-localization": "^2.3.2",
+    "react-native-mmkv": "^2.12.2",
     "react-native-modal": "^13.0.1",
+    "react-native-otp-inputs": "^7.4.0",
     "react-native-safe-area-context": "^4.9.0",
     "react-native-screens": "^3.29.0",
+    "react-native-svg": "^15.1.0",
+    "react-redux": "^9.1.0",
+    "redux": "^5.0.1",
     "socket.io-client": "^4.7.4"
   },
   "devDependencies": {

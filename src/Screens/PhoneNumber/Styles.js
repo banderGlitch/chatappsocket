@@ -8,8 +8,6 @@ const styles = StyleSheet.create({
         fontFamily: fontFamily.regular,
         marginTop: 16,
         marginVertical: moderateScaleVertical(16)
-
-
     },
     agreeStyle: {
         fontSize: textScale(16),
@@ -19,7 +17,7 @@ const styles = StyleSheet.create({
 
     },
     dialCodeStyle: {
-        fontFamily: 16,
+        fontFamily: textScale(16),
         fontFamily: fontFamily.regular,
     },
     phoneInputStyle: {

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, Image, View, FlatList } from 'react-native'
-import { Fragment, useState } from 'react';
-import React from 'react'
+import { Fragment, useEffect, useState } from 'react';
+import React, {useCallback} from 'react'
 import imagePath from '../constants/imagePath'
 import Modal from "react-native-modal";
 import color from '../styles/color';
@@ -8,6 +8,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import HeaderComponent from './HeaderComponent';
 import countries from './countries';
 import HorizontalLine from './HorizontalLine';
+import fontFamily from '../styles/fontFamily';
+import { textScale } from '../styles/responsiveSize';
+import { SvgUri } from 'react-native-svg';
 const CountryPicker = ({
     fetchCountry = ()  => {},
     value = ""
@@ -15,23 +18,33 @@ const CountryPicker = ({
     const [data , setData ] = useState(countries)
     const [showModel, setShowModel] = useState(false)
 
-    const renderItem = ({item ,index}) => {
+
+    const renderItem = useCallback(({item , index}) => {
         return (
-            <TouchableOpacity style={{marginHorizontal: 16}}
+            <TouchableOpacity style={{marginHorizontal: 16, flexDirection:'row'}}
             activeOpacity={0.7}
             onPress={() => onSelectCountry(item)}
             >
-                <Text>{item?.name} ({item.dialCode})</Text>
+                {/* <SvgUri 
+                  width={"90"}
+                  height={"80"}
+                  uri={item.flag}
+                /> */}
+                <Text style={{...styles.nameStyle, 
+                    color: value == item.name ? color.lightBlue : color.black,
+                    }}>{item?.name} ({item.dialCode})</Text>
             </TouchableOpacity>
         )
 
-    }
+    },[data, value])
+
 
     const onSelectCountry = (item) => {
         fetchCountry(item)
         setShowModel(false)
 
     }
+
     return (
         <Fragment>
             <TouchableOpacity style={styles.container}
@@ -62,7 +75,8 @@ const CountryPicker = ({
     )
 }
 
-export default CountryPicker
+
+export default React.memo(CountryPicker) 
 
 const styles = StyleSheet.create({
     container: {
@@ -75,5 +89,11 @@ const styles = StyleSheet.create({
     },
     valueStyle: {
         color: color.lightBlue
+    },
+    nameStyle : {
+        color: color.lightBlue,
+        fontFamily: fontFamily.bold,
+        fontSize: textScale(18)
+
     }
 })
