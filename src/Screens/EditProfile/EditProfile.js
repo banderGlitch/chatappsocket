@@ -52,19 +52,18 @@ const EditProfile = ({ navigation, route }) => {
 
   }
   const onDone = async() => {
-    let apiData = { 
-      ...state,
-      ...data
+    let apiData = {
+      ...state,...data
     }
     try {
-      const res = await actions.signup(apiData)
-      console.log("api res signup",  res)
-
-    } catch(error) {
-      console.log("error raised in signup api", error)
-
+      const res = await actions.signUp(apiData)
+      console.log("response from api we have", res)
+       navigation.navigate(navigationStrings.OTP_VERIFICATION, {data:res?.data})
     }
-    console.log("api_data", apiData)
+    catch (error) {
+      console.log("error raised is signup api", error)
+    }
+    console.log("api...data", apiData)
     // navigation.navigate(navigationStrings.OTP_VERIFICATION, {data:{...state, ...data}})
 
   }

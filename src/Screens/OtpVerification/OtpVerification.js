@@ -14,9 +14,10 @@ import actions from '../../redux/actions'
 
 export default function OtpVerification({ navigation, route }) {
 
+
   const { data } = route?.params
 
-  console.log("Data============>", data)
+  // console.log("Data============>", data)
 
 
   const leftCustomView = () => {
@@ -29,13 +30,14 @@ export default function OtpVerification({ navigation, route }) {
   }
   const handleChange = async (value) => {
     if (value.length >= 6) {
-      actions.signup({
-        _id: 'asdasdasdasda',
-        ...data
-      })
-
+      try { 
+        let res =  await actions.otpVerify({ otp: value, user_id : data._id})
+        console.log("Response", res)
+      } catch (error) {
+        console.log("error raised in verifying OTP",error)
+      }
+     
     }
-
 
 
   }

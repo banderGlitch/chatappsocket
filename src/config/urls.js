@@ -1,13 +1,10 @@
-const LOCAL_URL = ' http://localhost:3000' // For simulator 
-const LIVE_STAGING_URL = 'https://socket-app-backend-u3hp.onrender.com'// Physical Device
+export const API_BASE_URL_LOCAL = ' https://9cbe-2409-40e3-402f-6c3e-2063-5af1-5c4c-2107.ngrok-free.app/'
+export const API_BASE_URL_LIVE_URL = 'https://socket-app-backend-u3hp.onrender.com'
 
-export const API_BASE_URL = LIVE_STAGING_URL
-export const getApiUrl = (endpoint) => API_BASE_URL + endpoint;
-
-export const SIGNUP_API = getApiUrl("/api/users/signup")
-export const GET_USERS  = getApiUrl("/api/users/get_users")
-export const VERIFY_OTP = getApiUrl("api/users/otpVerify")
+export const getApiUrl = (endpoint) => API_BASE_URL_LOCAL + endpoint
 
 
-
-// Local API won't run on physical device unless it's an expo project connected via same network.
+export const SIGNUP_API = getApiUrl('api/users/signup')
+export const GET_USERS = getApiUrl('api/users/users')
+export const VERIFY_OTP = getApiUrl('api/users/verifyOtp')
+// export const VERIFY_OTP = getApiUrl('api/users/signup')

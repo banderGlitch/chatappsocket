@@ -1,11 +1,38 @@
-import { SIGNUP_API } from "../../config/urls"
-import { apiPost } from "../../config/utils"
-import { saveUserData } from "../reducers/auth"
-import { useDispatch } from 'react-redux'
-export function signup(data) {
+import { saveUserData } from '../reducers/auth'
+import { apiPost, setItem } from '../../utils/utils'
+import { SIGNUP_API, VERIFY_OTP } from '../../config/urls'
+import store from '../store'
+
+
+
+export function signUp(data) {
+   
     return apiPost(SIGNUP_API, data)
-    // const dispatch = useDispatch()
-    // dispatch(saveUserData(data))
-    // console.log("data we got in redux store!!!!!", data)
+
+}
+
+
+export function otpVerify(data) {
+   
+    return new Promise((resolve, reject) => {
+        apiPost(VERIFY_OTP, data).then((res) => {
+            if (!!res?.data?._id) {
+                setItem('userData', res.data).then((returnValue) => {
+                    store.dispatch(saveUserData(res?.data))
+                    resolve(res)
+                    
+                }).catch((error) => {
+                    resolve(error)
+                })
+                return; 
+              
+            }
+            resolve(res)
+
+        }).catch((error) => {
+            reject(error)
+        })
+    })
+
 
 }

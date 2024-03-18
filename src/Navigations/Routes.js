@@ -1,6 +1,5 @@
 // In App.js in a new project
-
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -14,11 +13,10 @@ function Routes() {
 
   const userData = useSelector(state => state.auth)
 
-  console.log("reducers all values ", userData)
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown:false}}>
-        {!!userData.userData?._id ? <>{MainStack(Stack)}</>:<>{AuthStack(Stack)}</>}
+        {!!userData.userData._id? <>{MainStack(Stack)}</>:<>{AuthStack(Stack)}</>}
       </Stack.Navigator>
     </NavigationContainer>
   );
